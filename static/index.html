@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vue-TODO</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/vue.js"></script>
+</head>
+
+<body>
+    <header class="navbar navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">Learn JavaScript</a>
+            </div>
+            <nav class="collapse navbar-collapse" id="bs-navbar">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a target="_blank" href="http://www.liaoxuefeng.com/">Get Courses</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://github.com/michaelliao/learn-javascript">Source Code</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="http://getbootstrap.com/">Resource</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="important" style="color:#cdbfe3; background-color:#6f5499; padding:30px 0; margin:-20px 0 20px 0;">
+        <div class="container">
+            <h1 style="color:#fff; font-size:60px">Getting started</h1>
+            <p style="font-size:24px; line-height:48px">Learn JavaScript, Node.js, npm, koa2, Vue, babel, etc. at liaoxuefeng.com.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-th-list"></span> MVVM</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="vm">
+                            <h3>{{ title }}</h3>
+                            <ol>
+                                <li v-for="t in todos">
+                                    <dl>
+                                        <dt>{{ t.name }}</dt>
+                                        <dd>{{ t.description }}</dd>
+                                    </dl>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-th-list"></span> MVVM</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h3>add todo:</h3>
+                        <form action="#" onsubmit="return executeJs()">
+                            <div class="form-group">
+                                <textarea id="code" class="form-control" style="font-family: Menlo,Monaco,Consolas,'Courier New',monospace; resize:none;"
+                                    rows="5">vm.todos.push({
+    name: 'Learn Linux',
+    description: 'Learn Linux, ssh, iptables, lvm, etc'
+});</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Execute</button>
+                        </form>
+                        <hr>
+                        <h3>delete todo:</h3>
+                        <form action="#" onsubmit="return deleteItem()">
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</body>
+
+<script>
+
+    var vm = new Vue({
+        el: '#vm',
+        data: {
+            title: 'TODO List',
+            todos: [
+                {
+                    name: 'Learn Git',
+                    description: 'Learn how to use git as distributed version control'
+                },
+                {
+                    name: 'Learn JavaScript',
+                    description: 'Learn JavaScript, Node.js, NPM and other libraries'
+                },
+                {
+                    name: 'Learn Python',
+                    description: 'Learn Python, WSGI, asyncio and NumPy'
+                },
+                {
+                    name: 'Learn Java',
+                    description: 'Learn Java, Servlet, Maven and Spring'
+                }
+            ]
+        },
+        methods: {
+            delete: function () {
+                this.todos.pop()
+            }
+        }
+    });
+    window.vm = vm;
+
+    function executeJs() {
+        try {
+            var code = $('#code').val();
+            var fn = new Function('var vm = window.vm;\n' + code);
+            fn();
+        } catch (e) { }
+        return false
+    }
+
+    function deleteItem (){
+        try {
+            var fn = new Function('window.vm.todos.pop()\n');
+            fn();
+        } catch (error) {
+            return false
+        }
+    }
+
+</script>
+
+</html>
