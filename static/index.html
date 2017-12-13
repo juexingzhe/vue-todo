@@ -15,27 +15,14 @@
     <header class="navbar navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="/" class="navbar-brand">Learn JavaScript</a>
+                <a href="/" class="navbar-brand">Vue-TODO</a>
             </div>
-            <nav class="collapse navbar-collapse" id="bs-navbar">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a target="_blank" href="http://www.liaoxuefeng.com/">Get Courses</a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="https://github.com/michaelliao/learn-javascript">Source Code</a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="http://getbootstrap.com/">Resource</a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </header>
-    <div id="important" style="color:#cdbfe3; background-color:#6f5499; padding:30px 0; margin:-20px 0 20px 0;">
+    <div id="important" style="color:#cdbfe3; background-color:goldenrod; padding:30px 0; margin:-20px 0 20px 0;">
         <div class="container">
             <h1 style="color:#fff; font-size:60px">Getting started</h1>
-            <p style="font-size:24px; line-height:48px">Learn JavaScript, Node.js, npm, koa2, Vue, babel, etc. at liaoxuefeng.com.</p>
+            <p style="font-size:24px; line-height:48px">Learn Vue, Node.js, bootstrap.</p>
         </div>
     </div>
 
@@ -69,19 +56,19 @@
                             <span class="glyphicon glyphicon-th-list"></span> MVVM</h3>
                     </div>
                     <div class="panel-body">
-                        <h3>add todo:</h3>
+                        <h3>Add Todo:</h3>
                         <form action="#" onsubmit="return executeJs()">
                             <div class="form-group">
                                 <textarea id="code" class="form-control" style="font-family: Menlo,Monaco,Consolas,'Courier New',monospace; resize:none;"
                                     rows="5">vm.todos.push({
-    name: 'Learn Linux',
-    description: 'Learn Linux, ssh, iptables, lvm, etc'
+    name: 'Java',
+    description: 'Learn Java'
 });</textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Execute</button>
+                            <button type="submit" class="btn btn-primary">Add</button>
                         </form>
                         <hr>
-                        <h3>delete todo:</h3>
+                        <h3>Delete Todo:</h3>
                         <form action="#" onsubmit="return deleteItem()">
                             <button type="submit" class="btn btn-primary">Delete</button>
                         </form>
@@ -95,34 +82,28 @@
 </body>
 
 <script>
-
     var vm = new Vue({
         el: '#vm',
         data: {
             title: 'TODO List',
             todos: [
                 {
-                    name: 'Learn Git',
-                    description: 'Learn how to use git as distributed version control'
+                    name: 'Vue',
+                    description: 'Learn vue'
                 },
                 {
-                    name: 'Learn JavaScript',
-                    description: 'Learn JavaScript, Node.js, NPM and other libraries'
+                    name: 'Node.js',
+                    description: 'Learn Node.js'
                 },
                 {
-                    name: 'Learn Python',
-                    description: 'Learn Python, WSGI, asyncio and NumPy'
+                    name: 'JavaScript',
+                    description: 'Learn JavaScript'
                 },
                 {
-                    name: 'Learn Java',
-                    description: 'Learn Java, Servlet, Maven and Spring'
+                    name: 'Bootstrap',
+                    description: 'Learn Bootstrap'
                 }
             ]
-        },
-        methods: {
-            delete: function () {
-                this.todos.pop()
-            }
         }
     });
     window.vm = vm;
@@ -136,7 +117,7 @@
         return false
     }
 
-    function deleteItem (){
+    function deleteItem() {
         try {
             var fn = new Function('window.vm.todos.pop()\n');
             fn();
